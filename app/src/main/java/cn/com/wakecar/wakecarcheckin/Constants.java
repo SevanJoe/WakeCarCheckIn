@@ -10,4 +10,7 @@ public class Constants {
     // prefs
     public static final String PREFS_EMAIL = "prefs_email";
     public static final String PREFS_PASSWORD = "prefs_password";
+
+    public static final String[] USER_NAMES = {"jiaolei", "huangchen", "hupengfei", "yangbin", "harkey", "wenjing", "liuxiaoyun", "zhuliyan", "chengxiao", "wangqi"};
+    public static final String EMAIL_SUFFIX = "@wakecar.cn";
 }

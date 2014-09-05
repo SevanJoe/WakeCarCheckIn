@@ -1,4 +1,4 @@
-package cn.com.wakecar.wakecarcheckin;
+package cn.com.wakecar.wakecarcheckin.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -6,6 +6,7 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,8 @@ import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
 
+import cn.com.wakecar.wakecarcheckin.Constants;
+import cn.com.wakecar.wakecarcheckin.R;
 import cn.com.wakecar.wakecarcheckin.network.WakeCarApiClient;
 import cn.com.wakecar.wakecarcheckin.utils.InputUtil;
 import cn.com.wakecar.wakecarcheckin.utils.PreferencesHelper;
@@ -53,6 +56,14 @@ public class CheckInActivity extends ActionBarActivity {
 
         mLoginEmailText.setText(PreferencesHelper.getStringForKey(Constants.PREFS_EMAIL, ""));
         mLoginPasswordText.setText(PreferencesHelper.getStringForKey(Constants.PREFS_PASSWORD, ""));
+
+        String [] emails = new String[Constants.USER_NAMES.length];
+        for (int i = 0; i < emails.length; ++i) {
+            emails[i] = Constants.USER_NAMES[i] + Constants.EMAIL_SUFFIX;
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, emails);
+        mLoginEmailText.setAdapter(arrayAdapter);
+        mLoginEmailText.setThreshold(1);
     }
 
     public void login(View view) {

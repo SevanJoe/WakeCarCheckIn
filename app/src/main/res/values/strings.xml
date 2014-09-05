@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">微卡掌上签到</string>
-    <string name="copyright">Copyright @ WakeCar 2014 v1.1</string>
+    <string name="copyright">Copyright @ WakeCar 2014 v1.2</string>
     <string name="action_settings">切换用户</string>
     <string name="prompt_email">请输入邮箱</string>
     <string name="prompt_password">请输入密码</string>
