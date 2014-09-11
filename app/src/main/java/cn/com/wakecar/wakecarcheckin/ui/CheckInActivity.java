@@ -1,5 +1,6 @@
 package cn.com.wakecar.wakecarcheckin.ui;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
@@ -32,6 +33,7 @@ public class CheckInActivity extends ActionBarActivity {
     private Button mSignInButton, mRetryButton;
     private ProgressBar mLoginProgress;
     private TextView mLoginText;
+    private TextView mVersionText;
 
     private String mEmailString, mPasswordString;
 
@@ -53,6 +55,7 @@ public class CheckInActivity extends ActionBarActivity {
         mLoginText = (TextView) findViewById(R.id.login_text);
         mSignInButton = (Button) findViewById(R.id.sign_in_button);
         mRetryButton = (Button) findViewById(R.id.retry_button);
+        mVersionText = (TextView) findViewById(R.id.version_text);
 
         mLoginEmailText.setText(PreferencesHelper.getStringForKey(Constants.PREFS_EMAIL, ""));
         mLoginPasswordText.setText(PreferencesHelper.getStringForKey(Constants.PREFS_PASSWORD, ""));
@@ -64,6 +67,12 @@ public class CheckInActivity extends ActionBarActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, emails);
         mLoginEmailText.setAdapter(arrayAdapter);
         mLoginEmailText.setThreshold(1);
+
+        try {
+            mVersionText.setText(String.format(getString(R.string.copyright), getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void login(View view) {
@@ -142,6 +151,7 @@ public class CheckInActivity extends ActionBarActivity {
     public void retryLogin(View view) {
         mRetryButton.setVisibility(View.GONE);
         mLoginProgress.setVisibility(View.VISIBLE);
+        mLoginText.setText(getString(R.string.login_progress));
         login(null);
     }
 

@@ -104,6 +104,7 @@
     </ScrollView>
 
     <TextView
+        android:id="@+id/version_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
