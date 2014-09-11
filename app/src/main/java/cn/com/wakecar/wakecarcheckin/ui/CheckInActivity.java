@@ -141,6 +141,7 @@ public class CheckInActivity extends ActionBarActivity {
 
     public void retryLogin(View view) {
         mRetryButton.setVisibility(View.GONE);
+        mLoginProgress.setVisibility(View.VISIBLE);
         login(null);
     }
 
